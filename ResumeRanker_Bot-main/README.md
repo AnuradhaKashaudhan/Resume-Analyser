@@ -1,5 +1,3 @@
-# DRCode AI Resume Analyzer – Project Overview
-
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=28&duration=3000&color=00F7FF&center=true&vCenter=true&width=700&lines=DRCode+AI+Resume+Analyzer;Semantic+AI+%2B+ATS+Intelligence;Built+with+FastAPI+%2B+SBERT+%2B+GPT" />
 </p>
