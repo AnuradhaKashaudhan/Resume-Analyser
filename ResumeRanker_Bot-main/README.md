@@ -125,10 +125,29 @@ uvicorn app.main:app --reload
 
 ---
 
-## 👩‍💻 Author
+## 👥 Team
 
-**Anuradha Kashaudhan**
-💻 CSE @ LPU | AI Developer
+<p align="center">
+
+👩‍💻 <b><a href="https://github.com/AnuradhaKashaudhan">Anuradha Kashaudhan</a></b>
+👨‍💻 <b><a href="#">Kunal Sharma</a></b>
+👨‍💻 <b><a href="#">Lakshya Agrawal</a></b>
+
+</p>
+
+---
+
+## 🤝 Collaboration
+
+This project was built through **close team collaboration**, where all members contributed collectively across:
+
+* 🧠 AI/ML model integration
+* ⚙️ Backend development (FastAPI APIs)
+* 💬 Telegram bot implementation
+* 🎨 Frontend design & user experience
+* 📄 Resume parsing, scoring, and generation
+
+We followed a **shared ownership approach**, ensuring every component was designed, developed, and optimized together.
 
 ---
 
