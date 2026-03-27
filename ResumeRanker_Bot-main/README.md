@@ -116,14 +116,6 @@ uvicorn app.main:app --reload
 
 ---
 
-## 📸 Demo (Add Your Screenshots Here)
-
-<p align="center">
-  <img src="https://media.giphy.com/media/QBd2kLB5qDmysEXre9/giphy.gif" width="500"/>
-</p>
-
----
-
 ## 🌟 Future Scope
 
 * 📊 Dashboard Analytics
