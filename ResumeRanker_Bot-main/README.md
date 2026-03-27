@@ -1,67 +1,147 @@
 # DRCode AI Resume Analyzer – Project Overview
 
-This document provides a comprehensive breakdown of the technical work completed, the architecture of the application, and the entire technology stack used to build the DRCode AI Resume Analyzer.
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=28&duration=3000&color=00F7FF&center=true&vCenter=true&width=700&lines=DRCode+AI+Resume+Analyzer;Semantic+AI+%2B+ATS+Intelligence;Built+with+FastAPI+%2B+SBERT+%2B+GPT" />
+</p>
 
 ---
 
-## 🏗️ Architecture Summary
+<h1 align="center">🚀 DRCode AI Resume Analyzer</h1>
 
-The project is built using a **service-oriented architecture**. It heavily decouples completely separate concerns—such as extracting text from PDFs, performing NLP data extraction, running semantic matching, interacting with Telegram users, and serving the frontend.
-
-### 1. The Telegram Bot (`bot/`)
-The primary user interface. We use `python-telegram-bot` to create a conversational flow (using a `ConversationHandler`). The bot guides the user through providing a Job Description (JD) and a Resume. Once both documents are received, it forwards them to the backend API via HTTP requests. 
-
-### 2. The FastAPI Backend (`app/`)
-The core processing engine of the application. The FastAPI backend exposes endpoints (e.g., `/analyze`) that orchestrate the internal services to process files, score them, and generate improved variations. It also serves the frontend statics.
-
-### 3. The Services Layer (`app/services/`)
-This is where the heavy lifting happens. We built a series of isolated modules:
-- **`file_parser.py`**: Extracts raw text from uploaded `.pdf` and `.docx` files.
-- **`nlp_processor.py`**: Uses spaCy to analyze text, tokenizes sentences, and extracts hard skills, tools, and experience snippets utilizing entity recognition and custom heuristics.
-- **`matcher.py`**: Compares the resume against the JD using **Sentence-BERT (SBERT)** for semantic similarity and deep keyword overlap extraction.
-- **`scorer.py`**: Calculates an objective `x/10` score. It uses a weighted formula based on Skill Match (40%), Experience Relevance (20%), Keyword Match (20%), and Semantic Similarity (20%).
-- **`recommender.py`**: Finds missing skills and generates actionable ATS (Applicant Tracking System) layout tips.
-- **`improver.py`**: Integrates with the **OpenAI GPT API** (or falls back to a mock improver if no API key is provided) to rewrite the resume text, injecting missing keywords intelligently, and strengthening the impact of existing bullet points using metrics.
-- **`resume_gen.py`**: Re-generates the newly improved text back into actual downloadable PDF and DOCX file formats.
-
-### 4. The Web Frontend (`web/`)
-A premium, mobile-first overview website that serves as a landing page for users wanting an introduction to the product. 
+<p align="center">
+  <b>💡 Intelligent Resume Analysis | 🤖 AI Rewriting | 📊 ATS Optimization</b>
+</p>
 
 ---
 
-## 🛠️ Complete Technology Stack
+## 🧠 About The Project
 
-### Backend Web Server
-- **FastAPI**: The high-performance asynchronous web framework used for the main API.
-- **Uvicorn**: ASGI web server implementation used to run FastAPI.
-- **Pydantic**: Provides data validation and serialization (used for all request/response schemas).
-- **HTTPX**: Used for async HTTP requests between the Telegram bot and the backend API.
+✨ An **AI-powered Resume Intelligence System** that:
 
-### Bot Engine
-- **python-telegram-bot (v20+)**: Async wrapper for the Telegram Bot API. Handles users, inline keyboards, message processing, and document downloads.
-
-### AI / Natural Language Processing
-- **spaCy (`en_core_web_sm`)**: A powerful NLP library used for Named Entity Recognition (NER), tokenization, and linguistic analysis to detect skills and calculate experience durations.
-- **Sentence-Transformers (Sentence-BERT)**: Powered by HuggingFace implementations (using the lightweight `all-MiniLM-L6-v2` model). We use this to understand the *meaning* of sentences, rather than just doing naive keyword matching between the JD and the Resume.
-- **OpenAI GPT API**: The generative AI used to rewrite and improve the resume. (Includes a rule-based fallback).
-
-### File Parsing and Generation
-- **PyMuPDF (`fitz`)**: For extremely fast and accurate text extraction from uploaded PDFs.
-- **python-docx**: Used for reading text from `.docx` files and generating/formatting the final improved resume exports.
-- **ReportLab**: Used for rendering raw text into a newly generated `.pdf` document for final download.
-
-### Frontend Web UI
-- **Vanilla HTML5 & CSS3**: Custom CSS using CSS Custom Properties (Variables) to create a dark mode, premium "Glassmorphism" aesthetic with vibrant gradients.
-- **Vanilla JavaScript**: Used strictly for interactions, responsive navigation, IntersectionObserver scroll animations, and the particle network background on the `canvas` element.
-
-### Utilities
-- **python-dotenv**: To load and manage secure secrets (API Keys, Bot Tokens).
-- **logging**: Native Python asynchronous logging built into helper modules across the stack to track operations.
+* Understands meaning using **Semantic AI**
+* Provides **ATS-based scoring**
+* Automatically **rewrites resumes using LLMs**
 
 ---
 
-## 🚀 Key Features Built From Scratch
-1. **Semantic Matching Engine**: Bypasses traditional ATS systems that look for exact keyword matches by understanding the spatial meaning of words (e.g. knowing that "UI/UX" and "Interface Design" are highly related).
-2. **Auto-Improver**: Using generative AI, the system actually rewrites the CV for the user and spits the document back out so they don't have to manually copy-paste tips.
-3. **Lazy-Loading ML Models**: The heavy ML models (`spaCy` and `Sentence-BERT`) are only loaded into memory when first requested by the routes, saving startup speed and RAM capacity.
-4. **Resilient Fallbacks**: If OpenAI is rate-limited or the API key runs out, the code natively falls back to a rule-based mock improver without throwing hard errors to the user.
+## 🎯 Why This Project is Different?
+
+🔥 Unlike traditional resume tools:
+
+| ❌ Traditional ATS | ✅ DRCode AI            |
+| ----------------- | ---------------------- |
+| Keyword matching  | Semantic understanding |
+| Static scoring    | AI-driven feedback     |
+| No improvement    | Auto resume rewriting  |
+
+---
+
+## ⚡ Features
+
+* 🧠 Semantic Matching (SBERT)
+* 📊 Multi-factor ATS Scoring
+* ✍️ AI Resume Improver (GPT)
+* 📉 Skill Gap Analysis
+* 📄 Resume Regeneration (PDF/DOCX)
+* 💬 Telegram Bot Integration
+* ⚡ Lazy Loading ML Models
+* 🛡️ API Fallback System
+
+---
+
+## 🏗️ Architecture
+
+<p align="center">
+  <img src="https://media.giphy.com/media/L8K62iTDkzGX6/giphy.gif" width="400"/>
+</p>
+
+```text
+User → Telegram Bot → FastAPI → AI Services → Output
+```
+
+---
+
+## 🛠️ Tech Stack
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/spaCy-09A3D5?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/SBERT-FF6F61?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/OpenAI-GPT-412991?style=for-the-badge"/>
+
+</p>
+
+---
+
+## 🧩 Core Modules
+
+| 🔧 Module     | 🚀 Function           |
+| ------------- | --------------------- |
+| file_parser   | Extract text          |
+| nlp_processor | NLP + skill detection |
+| matcher       | Semantic similarity   |
+| scorer        | ATS score             |
+| improver      | Resume rewriting      |
+| resume_gen    | Generate PDF/DOCX     |
+
+---
+
+## 📊 AI Scoring System
+
+* 🎯 Skill Match → 40%
+* 💼 Experience → 20%
+* 🔑 Keywords → 20%
+* 🧠 Semantic Similarity → 20%
+
+---
+
+## ✍️ AI Resume Improver
+
+✨ Converts weak resumes into:
+
+* 💪 Strong bullet points
+* 📈 Measurable achievements
+* 🎯 Keyword-optimized content
+
+---
+
+## 🚀 How to Run
+
+bash
+git clone https://github.com/AnuradhaKashaudhan/Resume-Analyser.git
+cd Resume-Analyser
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+
+
+---
+
+## 📸 Demo (Add Your Screenshots Here)
+
+<p align="center">
+  <img src="https://media.giphy.com/media/QBd2kLB5qDmysEXre9/giphy.gif" width="500"/>
+</p>
+
+---
+
+## 🌟 Future Scope
+
+* 📊 Dashboard Analytics
+* 🌍 Multi-language Support
+* 🤖 Career Recommendation Engine
+* 🔗 LinkedIn Analyzer
+
+---
+
+## 👩‍💻 Author
+
+**Anuradha Kashaudhan**
+💻 CSE @ LPU | AI Developer
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
